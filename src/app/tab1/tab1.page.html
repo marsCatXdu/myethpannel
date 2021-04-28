@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      检索
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">检索</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="9">
+        <ion-searchbar placeholder="输入关键字"></ion-searchbar>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button expand="block">搜索</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <div style="padding-left: 12px;">
+        搜索设置
+      </div>
+    </ion-row>
+    <ion-row>
+      <div>
+        <div style="display: inline;">
+          <ion-checkbox color="primary" style="margin-left: 12px;" [(ngModel)]="searchParams.keySearch"></ion-checkbox>
+          <ion-label style="margin-left: 3px;">key检索</ion-label>
+        </div>
+        <div style="display: inline;">
+          <ion-checkbox color="primary" style="margin-left: 12px;" [(ngModel)]="searchParams.fuzzySearch"></ion-checkbox>
+          <ion-label style="margin-left: 3px;">模糊检索</ion-label>
+        </div>
+        <div style="display: inline; margin-left: 20px;" (click)="presentPopover($event)">
+          <ion-icon name="filter" slot="end"></ion-icon>
+          <ion-label style="margin-left: 3px;">更多设置</ion-label>
+        </div>
+      </div>
+    </ion-row>
+  </ion-grid>
+  <div *ngIf="pageState==0">
+    输入关键字以检索
+  </div>
+
+  <div *ngIf="pageState==1">  <!-- 显示结果 -->
+    输入关键字以检索
+  </div>
+
+  <div *ngIf="pageState==-1">  <!-- 网络错误 -->
+    无网络连接，请检查网络或权限
+  </div>
+
+  <div *ngIf="pageState==2">  <!-- 无结果 -->
+    无搜索结果
+  </div>
+  
+</ion-content>

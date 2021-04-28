@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      数据库概览与链控
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">数据库概览与链控</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+
+  <ion-card mode="ios">
+    <ion-card-header>
+      <ion-card-subtitle>私链网络ID：NULL</ion-card-subtitle>
+      <ion-card-title>数据库：SQLite3</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      库位置：/home/marscat/data/testdb.db<br />
+      表：test
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card mode="ios">
+    <ion-card-header>
+      <ion-card-subtitle>私链网络ID：NULL</ion-card-subtitle>
+      <ion-card-title>私链测试模式</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      当前状态：<div style="color: rgb(83, 160, 231);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRC 已连接</div>
+      当前块高：{{blockHeight}}<br />
+      SNI 地址：0x09<br />
+      矿机状态：<div style="color: rgb(255, 79, 79);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关机</div>
+    </ion-card-content>
+  </ion-card>
+  
+
+
+  <div class="ion-padding">
+
+    <ion-button (click)="getBlock()" expand="block">刷新块高</ion-button><br>
+    <ion-button (click)="getBlock()" expand="block">获取最高块</ion-button><br>
+    <ion-button (click)="setEtherBase()" expand="block" color="warning">设置 EtherBase</ion-button><br>
+    <ion-button (click)="getBlock()" expand="block" color="warning">开关矿机</ion-button><br>
+    <ion-button (click)="getBlock()" expand="block" color="success">连接默认 RPC </ion-button>
+  </div>
+
+
+</ion-content>
