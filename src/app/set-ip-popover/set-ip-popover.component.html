@@ -1,0 +1,19 @@
+<ion-content class="ion-padding">
+  <div>
+    设置要链接到的 RPC 端点
+  </div>
+  
+  <div style="padding: 10px 0px 10px 0px;">
+    <ion-input placeholder="例：127.0.0.1:3000"
+               (ionChange)="onInputChange($event)"
+               mode="ios"
+               style="background-color: rgb(243, 243, 243);">
+    </ion-input>    
+  </div>
+  
+
+  <ion-button (click)="dismiss()">确定并测试</ion-button>
+
+</ion-content>
+
+

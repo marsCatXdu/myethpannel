@@ -1,2 +1,14 @@
 # myethpannel
-My ethereum control pannel for graduation thesis
+My ethereum control panel for graduation thesis
+
+给毕业设计用的以太坊控制面板 App
+
+### 开发计划和进度
+
+4.28
+
+| 目标                                                  | 实现情况                     | 备注 |
+| ----------------------------------------------------- | ---------------------------- | ---- |
+| 实现 web3 服务器 ip 设置和测试功能                    | 完成                         |      |
+| 实现 aleth 挖矿控制（出块即停）接口（via ethconsole） | 做了一个巨将就的，就先这样吧 |      |
+
