@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { PopoverController } from '@ionic/angular';
-import { SetIpPopoverComponent } from '../set-ip-popover/set-ip-popover.component'
+import { SetIpPopoverComponent } from '../set-ip-popover/set-ip-popover.component';
+import { ContractDeployPage } from '../contract-deploy/contract-deploy.page';
+import { ContractCallerPopoverComponent } from '../contract-caller-popover/contract-caller-popover.component';
 
 
 declare let require :any;
@@ -59,6 +61,15 @@ export class Tab3Page {
   }
 
   /**
+   * 挖上几个块（ 不一定多少，暂定矿机开五秒，也可能跑疯了停不下来。。 ）
+   */
+  mineSomeBlocks() {
+    this.ajaxGet("mineSomeBlocks").then(res=>{
+      console.log(res);
+    });
+  }
+
+  /**
    * @brief 向 web3ServerEndpoint 发送 Get 请求
    * @param params 实际调用的 api
    */
@@ -96,5 +107,44 @@ export class Tab3Page {
       }
     });
   }
+
+  async presentContractDeployPopover(ev: any) {
+    console.log(ev);
+    const popover = await this.popCtrl.create({
+      component: ContractDeployPage,
+      event: ev,
+      translucent: false,
+      animated: true,
+      mode: "md",
+      cssClass: "customPopover",
+      componentProps: {
+        web3ep: this.web3ServerEndpoint
+      }
+    });
+    await popover.present();
+    await popover.onWillDismiss().then(res=>{
+    });
+  }
+
+  async presentContractCallerPopover(ev: any) {
+    console.log(ev);
+    const popover = await this.popCtrl.create({
+      component: ContractCallerPopoverComponent,
+      event: ev,
+      translucent: false,
+      animated: true,
+      mode: "md",
+      cssClass: "customPopover",
+      componentProps: {
+        value: "testVal",
+        web3ServerEndpointPassed: this.web3ServerEndpoint
+      }
+    });
+    await popover.present();
+    await popover.onWillDismiss().then(res=>{
+    });
+  }
+
+
 
 }

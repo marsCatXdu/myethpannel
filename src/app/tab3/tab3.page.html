@@ -53,10 +53,15 @@
   <div class="ion-padding">
 
     <ion-button (click)="getBlock()" expand="block">刷新块高</ion-button><br>
-    <ion-button (click)="getBlock()" expand="block">获取最高块</ion-button><br>
-    <ion-button (click)="setEtherBase()" expand="block" color="warning">设置 EtherBase</ion-button><br>
-    <ion-button (click)="getBlock()" expand="block" color="warning">开关矿机</ion-button><br>
-    <ion-button (click)="getBlock()" expand="block" color="success">连接默认 RPC </ion-button>
+    <ion-button (click)="mineSomeBlocks()" expand="block" color="warning">启动矿机</ion-button><br>
+    <ion-button fill="outline" (click)="presentContractDeployPopover($event)">
+      <ion-icon slot="start" name="swap-vertical-outline"></ion-icon>
+      部署合约
+    </ion-button>
+    <ion-button fill="outline" (click)="presentContractCallerPopover($event)">
+      <ion-icon slot="start" name="swap-vertical-outline"></ion-icon>
+      调用合约
+    </ion-button>
   </div>
 
 

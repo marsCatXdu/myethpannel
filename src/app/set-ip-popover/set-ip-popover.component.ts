@@ -48,6 +48,22 @@ export class SetIpPopoverComponent implements OnInit {
       console.log(err);
       this.presentToast("无法连接，请重新设置");
     });
+  }
+
+  async connectToLocalhostDismiss() {
+    this.inputip="localhost:3000"
+    this.presentToast("进行 RPC 连接测试...");
+    // 其实有回应了而且没报错就算是成功
+    // 不需要进行额外的判定
+    this.ajaxGet(this.inputip, "ping").then(res=>{
+      console.log(res);
+      console.log(this.inputip);
+      this.presentToast("连接成功！");
+      this.popCtrl.dismiss(this.inputip);
+    }).catch(err=>{
+      console.log(err);
+      this.presentToast("无法连接，请重新设置");
+    });
 
   }
 
