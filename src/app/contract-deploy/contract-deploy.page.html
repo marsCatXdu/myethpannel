@@ -4,7 +4,7 @@
     <ion-item>
       <ion-textarea placeholder="在此输入字节码" style="height: 200px;" rows="10" (ionChange)="onBytecodeChange($event)"></ion-textarea>
     </ion-item>
-  </div>
+  </div>  
 
   <div *ngIf="msgStatus==1">
     <ion-item>
@@ -19,6 +19,10 @@
   <ion-button expand="block" fill="outline" (click)="setJsonABI()" style="padding-top: 5px;">
     <ion-icon slot="start" name="swap-vertical-outline"></ion-icon>
     设置 ABI
+  </ion-button>
+  <ion-button expand="block" fill="outline" (click)="mineSomeBlocks()" style="padding-top: 5px;">
+    <ion-icon slot="start" name="swap-vertical-outline"></ion-icon>
+    启动矿机
   </ion-button>
 
 </ion-content>

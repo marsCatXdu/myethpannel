@@ -51,6 +51,15 @@ export class ContractDeployPage implements OnInit {
   }
 
   /**
+   * 挖上几个块（ 不一定多少，暂定矿机开五秒，也可能跑疯了停不下来。。 ）
+   */
+  mineSomeBlocks() {
+    this.ajaxGet("mineSomeBlocks").then(res=>{
+      console.log(res);
+    });
+  }
+
+  /**
    * @brief 向 web3ServerEndpoint 发送 Get 请求
    * @param params 实际调用的 api
    */
