@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      检索
+      区块链二手车搜索引擎
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,26 +16,17 @@
   <ion-grid>
     <ion-row class="ion-align-items-center">
       <ion-col size="9">
-        <ion-searchbar placeholder="输入关键字"></ion-searchbar>
+        <ion-searchbar placeholder="输入关键字" [(ngModel)]="fuzzyName"></ion-searchbar>
       </ion-col>
       <ion-col size="3">
-        <ion-button expand="block">搜索</ion-button>
+        <ion-button expand="block" (click)="searchByFuzzyName()">搜索</ion-button>
       </ion-col>
-    </ion-row>
-    <ion-row>
-      <div style="padding-left: 12px;">
-        搜索设置
-      </div>
     </ion-row>
     <ion-row>
       <div>
-        <div style="display: inline;">
-          <ion-checkbox color="primary" style="margin-left: 12px;" [(ngModel)]="searchParams.keySearch"></ion-checkbox>
-          <ion-label style="margin-left: 3px;">key检索</ion-label>
-        </div>
-        <div style="display: inline;">
-          <ion-checkbox color="primary" style="margin-left: 12px;" [(ngModel)]="searchParams.fuzzySearch"></ion-checkbox>
-          <ion-label style="margin-left: 3px;">模糊检索</ion-label>
+        <div style="display: inline; margin-left: 20px;" (click)="presentCarSortPopover($event)">
+          <ion-icon name="swap-vertical-outline" slot="end" style="color: rgb(255, 102, 0);"></ion-icon>
+          <ion-label style="margin-left: 3px;" style="color: rgb(255, 102, 0);">{{orderByCh}}</ion-label>
         </div>
         <div style="display: inline; margin-left: 20px;" (click)="presentPopover($event)">
           <ion-icon name="filter" slot="end"></ion-icon>
@@ -44,20 +35,42 @@
       </div>
     </ion-row>
   </ion-grid>
-  <div *ngIf="pageState==0">
+  <div *ngIf="pageState==0" style="padding-top: 50%; text-align: center; font-size: large;">
     输入关键字以检索
   </div>
 
   <div *ngIf="pageState==1">  <!-- 显示结果 -->
-    输入关键字以检索
+    <ion-card mode="ios" *ngFor="let a of resultList" style="margin-top: 12px;">
+      <ion-card-header style="padding-bottom: 4px;">
+        <ion-card-title style="color: rgb(88, 88, 88); font-size: large;">{{a.tt}}</ion-card-title>
+        <ion-card-subtitle style="color: rgb(255, 0, 0); font-size: large;">￥ {{a.p}} 万</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-chip color="primary">
+          <ion-label color="primary">{{a.t}}公里</ion-label>
+        </ion-chip>
+        <ion-chip color="primary">
+          <ion-label color="primary">{{a.d}}上牌</ion-label>
+        </ion-chip>
+        <ion-chip color="primary">
+          <ion-label color="primary">{{a.l}}</ion-label>
+        </ion-chip>
+      </ion-card-content>
+    </ion-card>
   </div>
 
-  <div *ngIf="pageState==-1">  <!-- 网络错误 -->
+  <div *ngIf="pageState==-1" style="padding-top: 50%; text-align: center; font-size: large;">  <!-- 网络错误 -->
     无网络连接，请检查网络或权限
   </div>
 
-  <div *ngIf="pageState==2">  <!-- 无结果 -->
+  <div *ngIf="pageState==2" style="padding-top: 50%; text-align: center; font-size: large;">  <!-- 无结果 -->
     无搜索结果
+  </div>
+
+  <div *ngIf="pageState==3" style="padding-top: 50%; text-align: center; ">  <!-- 加载中 -->
+    <ion-icon name="cloud-download-outline" style="font-size: 40px; color: #666666;"></ion-icon>
+    <h2>加载中</h2>
   </div>
   
 </ion-content>

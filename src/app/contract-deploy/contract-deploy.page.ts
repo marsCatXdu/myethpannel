@@ -46,7 +46,7 @@ export class ContractDeployPage implements OnInit {
   setJsonABI() {
     let body = JSON.stringify({abi: this.jsonabi, contractAddr: this.contractAddr});
     this.httpPost("addContractByAbiAndContractAddr", body).then((res: any)=>{
-
+      console.log(JSON.parse(res));
     })
   }
 

@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'contract-deploy',
     loadChildren: () => import('./contract-deploy/contract-deploy.module').then( m => m.ContractDeployPageModule)
+  },
+  {
+    path: 'carsearch-sort-popover',
+    loadChildren: () => import('./carsearch-sort-popover/carsearch-sort-popover.module').then( m => m.CarsearchSortPopoverPageModule)
   }
 ];
 @NgModule({

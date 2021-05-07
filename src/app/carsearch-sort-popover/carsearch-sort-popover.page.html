@@ -1,0 +1,31 @@
+<ion-content>
+  <ion-list lines="full">
+    <ion-radio-group value="default" #sortRadio>
+      <ion-item (click)="radioHandler('default', '默认排序')">
+        <ion-label>默认排序</ion-label>
+        <ion-radio slot="end" value="default"></ion-radio>
+      </ion-item>
+  
+      <ion-item (click)="radioHandler('highestPrice', '价格最高')">
+        <ion-label>价格最高</ion-label>
+        <ion-radio slot="end" value="highestPrice"></ion-radio>
+      </ion-item>
+  
+      <ion-item (click)="radioHandler('lowestPrice', '价格最低')">
+        <ion-label>价格最低</ion-label>
+        <ion-radio slot="end" value="lowestPrice"></ion-radio>
+      </ion-item>
+
+      <ion-item (click)="radioHandler('shortestTrip', '里程最短')">
+        <ion-label>里程最短</ion-label>
+        <ion-radio slot="end" value="shortestTrip"></ion-radio>
+      </ion-item>
+
+      <ion-item lines="none" (click)="radioHandler('shortestAge', '年限最短')">
+        <ion-label>年限最短</ion-label>
+        <ion-radio slot="end" value="shortestAge"></ion-radio>
+      </ion-item>
+
+    </ion-radio-group>
+  </ion-list>
+</ion-content>
