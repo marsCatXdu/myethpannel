@@ -1,0 +1,58 @@
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      价格
+    </ion-list-header>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col><div class="divButton" id="p0" name="priceRangeButton" (click)="changePriceRange('0')">不限</div></ion-col>
+          <ion-col><div class="divButton" id="p1" name="priceRangeButton" (click)="changePriceRange('1')">5万以下</div></ion-col>
+          <ion-col><div class="divButton" id="p2" name="priceRangeButton" (click)="changePriceRange('2')">5-10万</div></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><div class="divButton" id="p3" name="priceRangeButton" (click)="changePriceRange('3')">10-20万</div></ion-col>
+          <ion-col><div class="divButton" id="p4" name="priceRangeButton" (click)="changePriceRange('4')">20-30万</div></ion-col>
+          <ion-col><div class="divButton" id="p5" name="priceRangeButton" (click)="changePriceRange('5')">30万以上</div></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-list-header>
+      车龄
+    </ion-list-header>
+      <ion-item>
+        <ion-range #carAgeRadio pin="true" dualKnobs="true" min="0" max="15" step="1" snaps="true" (ionChange)="onAgeChange()">
+          <ion-label slot="start">0</ion-label>
+          <ion-label slot="end">15年</ion-label>
+        </ion-range>
+      </ion-item>
+    <ion-list-header>
+      亮点配置
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-grid>
+        <ion-row>
+          <ion-col><div class="divButton" id="0" name="featureButton" (click)="changeFeature(0)">不限</div></ion-col>
+          <ion-col><div class="divButton" id="1" name="featureButton" (click)="changeFeature(1)">后驻车雷达</div></ion-col>
+          <ion-col><div class="divButton" id="2" name="featureButton" (click)="changeFeature(2)">多功能方向盘</div></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><div class="divButton" id="3" name="featureButton" (click)="changeFeature(3)">真皮沙发</div></ion-col>
+          <ion-col><div class="divButton" id="4" name="featureButton" (click)="changeFeature(4)">后视镜加热</div></ion-col>
+          <ion-col><div class="divButton" id="5" name="featureButton" (click)="changeFeature(5)">后座出风口</div></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><div class="divButton" id="6" name="featureButton" (click)="changeFeature(6)">胎压监测</div></ion-col>
+          <ion-col><div class="divButton" id="7" name="featureButton" (click)="changeFeature(7)">自动空调</div></ion-col>
+          <ion-col><div class="divButton" id="8" name="featureButton" (click)="changeFeature(8)">日间行车灯</div></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><div class="divButton" id="9" name="featureButton" (click)="changeFeature(9)">无钥匙启动</div></ion-col>
+          <ion-col><div class="divButton" id="10" name="featureButton" (click)="changeFeature(10)">自动大灯</div></ion-col>
+          <ion-col><div class="divButton" id="11" name="featureButton" (click)="changeFeature(11)">倒车影像</div></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-button (click)="dismiss()" expand="block" style="padding:0 15px 0 15px">确定</ion-button><br>
+</ion-content>

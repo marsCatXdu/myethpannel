@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'carsearch-sort-popover',
     loadChildren: () => import('./carsearch-sort-popover/carsearch-sort-popover.module').then( m => m.CarsearchSortPopoverPageModule)
+  },
+  {
+    path: 'search-param-popover',
+    loadChildren: () => import('./search-param-popover/search-param-popover.module').then( m => m.SearchParamPopoverPageModule)
   }
 ];
 @NgModule({
