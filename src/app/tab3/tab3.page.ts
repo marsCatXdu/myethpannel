@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { PopoverController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+
 import { SetIpPopoverComponent } from '../set-ip-popover/set-ip-popover.component';
 import { ContractDeployPage } from '../contract-deploy/contract-deploy.page';
 import { ContractCallerPopoverComponent } from '../contract-caller-popover/contract-caller-popover.component';
@@ -22,7 +24,7 @@ export class Tab3Page {
   web3ServerEndpoint: any;
   isConnectedToRPC: boolean;
 
-  constructor(public http: HttpClient, private popCtrl: PopoverController) {
+  constructor(public http: HttpClient, private popCtrl: PopoverController, public toastController: ToastController) {
     this.blockHeight="NULL";
     this.isConnectedToRPC=false;
   }
@@ -45,10 +47,14 @@ export class Tab3Page {
    * 获取块高
    */
   getBlock() {
-    this.ajaxGet("getBlockHeight").then(res=>{
-      this.blockHeight=res;
-      console.log(this.blockHeight);
-    });
+    if(!this.isConnectedToRPC) {
+      this.presentToast("未连接到 RPC，无法完成操作");
+    } else {
+      this.ajaxGet("getBlockHeight").then(res=>{
+        this.blockHeight=res;
+        console.log(this.blockHeight);
+      });
+    }
   }
 
   /**
@@ -64,9 +70,13 @@ export class Tab3Page {
    * 挖上几个块（ 不一定多少，暂定矿机开五秒，也可能跑疯了停不下来。。 ）
    */
   mineSomeBlocks() {
-    this.ajaxGet("mineSomeBlocks").then(res=>{
-      console.log(res);
-    });
+    if(!this.isConnectedToRPC) {
+      this.presentToast("未连接到 RPC，无法完成操作");
+    } else {
+      this.ajaxGet("mineSomeBlocks").then(res=>{
+        console.log(res);
+      });
+    }
   }
 
   /**
@@ -145,6 +155,35 @@ export class Tab3Page {
     });
   }
 
-
+  /**
+   * @brief 展示 Toast
+   * @param message 要显示出来的文本信息 
+   * @param position 要显示出来的位置，分 top、middle、bottom. 默认 middle 
+   * @param duration 要显示的时间（毫秒）
+   */
+  async presentToast(message: string, position: string = "middle", duration: number = 2000) {
+    if(position=="top") {
+      const toast = await this.toastController.create({
+        message: message,
+        position: "top",
+        duration: duration
+      });
+      toast.present();
+    } else if(position=="bottom") {
+      const toast = await this.toastController.create({
+        message: message,
+        position: "bottom",
+        duration: duration
+      });
+      toast.present();
+    } else {
+      const toast = await this.toastController.create({
+        message: message,
+        position: "middle",
+        duration: duration
+      });
+      toast.present();
+    }
+  }
 
 }

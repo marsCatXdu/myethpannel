@@ -24,7 +24,6 @@
 
   <ion-card mode="ios">
     <ion-card-header>
-      <ion-card-subtitle>私链网络ID：NULL</ion-card-subtitle>
       <ion-card-title>数据库：SQLite3</ion-card-title>
     </ion-card-header>
   
@@ -36,15 +35,17 @@
 
   <ion-card mode="ios">
     <ion-card-header>
-      <ion-card-subtitle>私链网络ID：NULL</ion-card-subtitle>
       <ion-card-title>私链测试模式</ion-card-title>
     </ion-card-header>
   
     <ion-card-content>
-      当前状态：<div style="color: rgb(83, 160, 231);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRC 已连接</div>
+      <div *ngIf="isConnectedToRPC==true">
+        <div>当前状态：<div style="color: rgb(83, 160, 231);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRC 已连接</div></div>
+        <div style="color: #3399FF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RPC 端点：{{web3ServerEndpoint}}</div>
+      </div>
+      <div *ngIf="isConnectedToRPC==false">当前状态：<div style="color: rgb(255, 43, 43);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRC 未连接</div></div>
       当前块高：{{blockHeight}}<br />
-      SNI 地址：0x09<br />
-      矿机状态：<div style="color: rgb(255, 79, 79);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关机</div>
+
     </ion-card-content>
   </ion-card>
   
@@ -54,14 +55,22 @@
 
     <ion-button (click)="getBlock()" expand="block">刷新块高</ion-button><br>
     <ion-button (click)="mineSomeBlocks()" expand="block" color="warning">启动矿机</ion-button><br>
-    <ion-button fill="outline" (click)="presentContractDeployPopover($event)">
-      <ion-icon slot="start" name="swap-vertical-outline"></ion-icon>
-      部署合约
-    </ion-button>
-    <ion-button fill="outline" (click)="presentContractCallerPopover($event)">
-      <ion-icon slot="start" name="swap-vertical-outline"></ion-icon>
-      调用合约
-    </ion-button>
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <ion-button fill="outline" expand="block" (click)="presentContractDeployPopover($event)">
+            <ion-icon slot="start" name="swap-vertical-outline"></ion-icon>
+            部署合约
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-no-padding">
+          <ion-button fill="outline" expand="block" (click)="presentContractCallerPopover($event)">
+            <ion-icon slot="start" name="swap-vertical-outline"></ion-icon>
+            调用合约
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 
 

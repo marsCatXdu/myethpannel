@@ -6,12 +6,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">插入数据</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-textarea placeholder="在此输入 Sql 以直接操作数据库" style="height: 200px;" rows="10" (ionChange)="onAbiChange($event)"></ion-textarea>
+  </ion-item>
+  <ion-button expand="block" fill="outline" (click)="deployBytecode()" style="padding-top: 5px;">
+    <ion-icon slot="start" name="swap-vertical-outline"></ion-icon>
+    执行 SQL
+  </ion-button>
 </ion-content>
