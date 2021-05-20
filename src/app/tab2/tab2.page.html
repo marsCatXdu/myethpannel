@@ -8,9 +8,9 @@
 
 <ion-content class="ion-padding">
   <ion-item>
-    <ion-textarea placeholder="在此输入 Sql 以直接操作数据库" style="height: 200px;" rows="10" (ionChange)="onAbiChange($event)"></ion-textarea>
+    <ion-textarea placeholder="在此输入 Sql 以直接操作数据库" style="height: 200px;" rows="10" [(ngModel)]="sqlStr"></ion-textarea>
   </ion-item>
-  <ion-button expand="block" fill="outline" (click)="deployBytecode()" style="padding-top: 5px;">
+  <ion-button expand="block" fill="outline" (click)="execSql()" style="padding-top: 5px;">
     <ion-icon slot="start" name="swap-vertical-outline"></ion-icon>
     执行 SQL
   </ion-button>

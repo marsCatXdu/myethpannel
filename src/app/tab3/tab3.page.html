@@ -40,10 +40,10 @@
   
     <ion-card-content>
       <div *ngIf="isConnectedToRPC==true">
-        <div>当前状态：<div style="color: rgb(83, 160, 231);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRC 已连接</div></div>
+        <div>当前状态：<div style="color: rgb(83, 160, 231);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RPC 已连接</div></div>
         <div style="color: #3399FF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RPC 端点：{{web3ServerEndpoint}}</div>
       </div>
-      <div *ngIf="isConnectedToRPC==false">当前状态：<div style="color: rgb(255, 43, 43);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRC 未连接</div></div>
+      <div *ngIf="isConnectedToRPC==false">当前状态：<div style="color: rgb(255, 43, 43);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RPC 未连接</div></div>
       当前块高：{{blockHeight}}<br />
 
     </ion-card-content>
@@ -55,6 +55,11 @@
 
     <ion-button (click)="getBlock()" expand="block">刷新块高</ion-button><br>
     <ion-button (click)="mineSomeBlocks()" expand="block" color="warning">启动矿机</ion-button><br>
+    <ion-button fill="outline" expand="block" (click)="presentContractDeployPopover($event)">
+      <ion-icon slot="start" name="swap-vertical-outline"></ion-icon>
+      部署合约
+    </ion-button>
+    <!--
     <ion-grid class="ion-no-padding">
       <ion-row>
         <ion-col class="ion-no-padding">
@@ -71,6 +76,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+  -->
   </div>
 
 

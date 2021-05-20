@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 
-import { CarsearchSortPopoverPage } from '../carsearch-sort-popover/carsearch-sort-popover.page'
-import { SearchParamPopoverPage } from '../search-param-popover/search-param-popover.page'
+import { CarsearchSortPopoverPage } from '../carsearch-sort-popover/carsearch-sort-popover.page';
+import { SearchParamPopoverPage } from '../search-param-popover/search-param-popover.page';
+import { CarDetailPopoverPage } from '../car-detail-popover/car-detail-popover.page'
 
 
 @Component({
@@ -22,6 +23,7 @@ export class Tab1Page {
 
   searchParams: any;  // 搜索参数
   featureArr: Array<number>=[0];
+  featureList: Array<string>=[""];
 
 
   constructor(private popCtrl: PopoverController, public http: HttpClient) {
@@ -43,6 +45,9 @@ export class Tab1Page {
     this.orderBy = "default";
     this.orderByCh = "默认排序";
     this.web3ep='localhost:3000';
+
+    this.featureList = ["不限", "后驻车雷达", "多功能方向盘", "真皮沙发", "后视镜加热", "后座出风口", "胎压监测", "自动空调", "日间行车灯", "无钥匙启动", "自动大灯", "倒车影像"];
+
   }
 
 
@@ -50,11 +55,16 @@ export class Tab1Page {
     this.pageState=3;
     let body = JSON.stringify({fuzzyName: this.fuzzyName});
     this.httpPost("getItemByNameFuzzy", body).then((res: any)=>{
-      this.resultList=JSON.parse(res);
-      console.log(this.resultList);
-      if(this.resultList.length==0) {
+      if(res=="]") {
         this.pageState = 2;
         return;
+      } else {
+        this.resultList=JSON.parse(res);
+        console.log(this.resultList);
+        if(this.resultList.length==0) {
+          this.pageState = 2;
+          return;
+        }
       }
       this.pageState = 1;
     })
@@ -99,6 +109,7 @@ export class Tab1Page {
         return;
       } else {
         this.resultList=JSON.parse(res);
+        this.featureFilter();
         console.log(this.resultList);
         if(this.resultList.length==0) {
           this.pageState = 2;
@@ -139,6 +150,25 @@ export class Tab1Page {
     });
   }
 
+  async presentCarDetailPopover(ev: any, carInfo: any) {
+    console.log(ev);
+    const popover = await this.popCtrl.create({
+      component: CarDetailPopoverPage,
+      event: ev,
+      translucent: false,
+      animated: true,
+      mode: "ios",
+      cssClass: "customPopover",
+      componentProps: {
+        carInfo: carInfo
+      }
+    });
+    await popover.present();
+    await popover.onWillDismiss().then((res: any)=>{
+
+    });
+  }
+
   async searchParamPopover(ev: any) {
     console.log(ev);
     const popover = await this.popCtrl.create({
@@ -175,6 +205,23 @@ export class Tab1Page {
         reject(error);
       });
     });
+  }
+
+  featureFilter() {
+    if(this.searchParams.featureArr[0]) {
+      console.log("不限feature");
+      return;
+    } 
+    for(let i=1; i<12; i++) {   // 对于每一个 feature，挨个查. 一个 i 对应一个 list 里面的 feature
+      if(this.searchParams.featureArr[i]==1) {
+        for(let j=0; j<this.resultList.length; j++) {
+          if(this.resultList[j].f.search(this.featureList[i])==-1) {
+            console.log("删除feature"+j);
+            this.resultList.splice(j,1);
+          }
+        }
+      }
+    }
   }
 
 

@@ -40,7 +40,7 @@
   </div>
 
   <div *ngIf="pageState==1">  <!-- 显示结果 -->
-    <ion-card mode="ios" *ngFor="let a of resultList" style="margin-top: 12px;">
+    <ion-card mode="ios" *ngFor="let a of resultList" style="margin-top: 12px;" (click)="presentCarDetailPopover($event, a)">
       <ion-card-header style="padding-bottom: 4px;">
         <ion-card-title style="color: rgb(88, 88, 88); font-size: large;">{{a.tt}}</ion-card-title>
         <ion-card-subtitle style="color: rgb(255, 0, 0); font-size: large;">￥ {{a.p}} 万</ion-card-subtitle>

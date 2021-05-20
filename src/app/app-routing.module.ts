@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'search-param-popover',
     loadChildren: () => import('./search-param-popover/search-param-popover.module').then( m => m.SearchParamPopoverPageModule)
+  },
+  {
+    path: 'car-detail-popover',
+    loadChildren: () => import('./car-detail-popover/car-detail-popover.module').then( m => m.CarDetailPopoverPageModule)
   }
 ];
 @NgModule({
