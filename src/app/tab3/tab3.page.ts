@@ -8,9 +8,6 @@ import { ContractDeployPage } from '../contract-deploy/contract-deploy.page';
 import { ContractCallerPopoverComponent } from '../contract-caller-popover/contract-caller-popover.component';
 
 
-declare let require :any;
-const Web3 = require('web3');
-
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -19,7 +16,6 @@ const Web3 = require('web3');
 
 export class Tab3Page {
 
-  web3: any;
   blockHeight: any;
   web3ServerEndpoint: any;
   isConnectedToRPC: boolean;
